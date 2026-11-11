@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173b2a">
+  <meta name="description" content="Reserva tu cancha de futbol sintetico en Grass El Gol de Oro, Cajamarca.">
+  <title>Grass El Gol de Oro | Reserva tu cancha</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --grass: #2e7d32;
+      --grass-dark: #1d5e28;
+      --night: #1a365d;
+      --ink: #17241d;
+      --muted: #718078;
+      --line: #e4eae5;
+      --paper: #fff;
+      --canvas: #f5f8f5;
+      --mint: #eaf5e9;
+      --red: #c74949;
+      --red-soft: #fff0ef;
+      --amber: #a56d13;
+      --amber-soft: #fff4dc;
+      --shadow: 0 16px 45px rgba(23, 45, 29, .08);
+      font-family: "DM Sans", sans-serif;
+      color: var(--ink);
+      background: var(--canvas);
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 320px; background: var(--canvas); }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; }
+    .skip-link { position: absolute; z-index: 20; top: 8px; left: 8px; padding: 12px 16px; background: white; transform: translateY(-150%); }
+    .skip-link:focus { transform: translateY(0); }
+    .shell { max-width: 1440px; margin: 0 auto; padding: 0 48px; }
+    .topbar { height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand-mark { width: 43px; height: 43px; display: grid; place-items: center; border-radius: 13px; color: white; background: var(--grass); }
+    .brand-mark svg { width: 28px; height: 28px; }
+    .brand-copy { display: grid; gap: 1px; }
+    .brand-copy strong { font: 700 16px/1.1 "Outfit", sans-serif; letter-spacing: 0; }
+    .brand-copy span { color: var(--muted); font-size: 11px; }
+    .nav { display: flex; align-items: center; gap: 30px; }
+    .nav a { color: #536159; font-size: 13px; text-decoration: none; }
+    .nav a:hover, .nav a:focus-visible { color: var(--grass-dark); }
+    .top-contact { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 17px; border: 1px solid var(--line); border-radius: 7px; background: white; color: var(--night); font-size: 12px; font-weight: 700; text-decoration: none; }
+    .hero { position: relative; min-height: 240px; overflow: hidden; display: flex; align-items: center; padding: 36px 48px; border-radius: 12px; color: white; background: #193e2c; isolation: isolate; }
+    .hero::before { position: absolute; z-index: -2; inset: 0; content: ""; background: url("https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1900&q=85") center 54% / cover; }
+    .hero::after { position: absolute; z-index: -1; inset: 0; content: ""; background: linear-gradient(90deg, rgba(10, 32, 22, .86) 0%, rgba(12, 38, 25, .65) 43%, rgba(12, 38, 25, .07) 100%); }
+    .hero-copy { max-width: 590px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 13px; color: #d7edce; font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; }
+    .live-dot { width: 7px; height: 7px; border-radius: 50%; background: #9cda6d; box-shadow: 0 0 0 4px rgba(156, 218, 109, .17); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font: 700 clamp(30px, 4vw, 46px)/1.07 "Outfit", sans-serif; letter-spacing: 0; }
+    .hero-copy > p:last-child { margin-bottom: 0; color: rgba(255,255,255,.82); font-size: 14px; }
+    .hero-tag { position: absolute; right: 38px; bottom: 24px; display: flex; align-items: center; gap: 9px; color: white; font-size: 12px; font-weight: 600; }
+    .hero-tag svg { width: 17px; height: 17px; }
+    .booking-layout { display: grid; grid-template-columns: minmax(0, 1fr) 325px; align-items: start; gap: 27px; padding: 27px 0 54px; }
+    .main-column { min-width: 0; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+    .section-heading h2 { margin: 0 0 3px; font: 700 20px/1.2 "Outfit", sans-serif; }
+    .section-heading p { margin: 0; color: var(--muted); font-size: 12px; }
+    .stepper { display: flex; align-items: center; gap: 8px; padding-bottom: 2px; }
+    .step { display: flex; align-items: center; gap: 6px; color: #96a19a; font-size: 11px; font-weight: 600; white-space: nowrap; }
+    .step-number { width: 25px; height: 25px; display: grid; place-items: center; border: 1px solid #dfe6e0; border-radius: 50%; background: white; font-size: 11px; }
+    .step.is-current { color: var(--grass-dark); }
+    .step.is-current .step-number, .step.is-done .step-number { border-color: var(--grass); background: var(--grass); color: white; }
+    .step-divider { width: 16px; height: 1px; background: #dfe6e0; }
+    .panel { padding: 22px; border: 1px solid #e8ede8; border-radius: 9px; background: var(--paper); box-shadow: 0 3px 14px rgba(20, 40, 26, .025); }
+    .date-row { display: flex; gap: 9px; padding: 2px 0 20px; overflow-x: auto; scrollbar-width: thin; }
+    .date-button { flex: 0 0 83px; min-height: 68px; display: grid; align-content: center; justify-items: center; gap: 4px; border: 1px solid var(--line); border-radius: 7px; background: white; cursor: pointer; }
+    .date-button:hover { border-color: #9dc79e; }
+    .date-button[aria-pressed="true"] { border-color: var(--grass); background: var(--mint); box-shadow: inset 0 0 0 1px var(--grass); }
+    .date-button .day-name { color: #748078; font-size: 10px; font-weight: 600; }
+    .date-button .day-number { font: 700 18px/1 "Outfit", sans-serif; }
+    .date-button[aria-pressed="true"] .day-name { color: var(--grass-dark); }
+    .court-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 23px; }
+    .court-card { min-height: 76px; display: flex; align-items: center; gap: 10px; padding: 11px; border: 1px solid var(--line); border-radius: 7px; background: white; text-align: left; cursor: pointer; }
+    .court-card:hover { border-color: #9dc79e; }
+    .court-card[aria-pressed="true"] { border-color: var(--grass); background: #f5fbf4; box-shadow: inset 0 0 0 1px var(--grass); }
+    .court-icon { width: 38px; height: 38px; flex: 0 0 38px; display: grid; place-items: center; border-radius: 6px; background: #e8f2e7; color: var(--grass); }
+    .court-icon svg { width: 25px; height: 25px; }
+    .court-info { min-width: 0; display: grid; gap: 4px; }
+    .court-info strong { font-size: 12px; }
+    .court-info span { color: var(--muted); font-size: 10px; white-space: nowrap; }
+    .availability-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+    .availability-line h3 { margin: 0; font: 700 15px/1.2 "Outfit", sans-serif; }
+    .availability-line > span { color: var(--muted); font-size: 11px; }
+    .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 15px; }
+    .legend-item { display: inline-flex; align-items: center; gap: 6px; color: #647168; font-size: 10px; }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--grass); }
+    .legend-dot.busy { background: var(--red); }
+    .legend-dot.pending { background: #dea52e; }
+    .time-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+    .time-slot { min-height: 48px; display: grid; place-items: center; border: 1px solid #a9d2a7; border-radius: 6px; background: #f1f8f0; color: #266d2d; font-size: 12px; font-weight: 700; cursor: pointer; transition: background .15s, border-color .15s, transform .15s; }
+    .time-slot:not(:disabled):hover { transform: translateY(-1px); border-color: var(--grass); background: #e2f1e0; }
+    .time-slot[aria-pressed="true"] { border-color: var(--grass-dark); background: var(--grass); color: white; box-shadow: 0 3px 8px rgba(46,125,50,.2); }
+    .time-slot.is-busy { border-color: #f0d7d4; background: var(--red-soft); color: #b34a42; cursor: not-allowed; }
+    .time-slot.is-pending { border-color: #f1ddb0; background: var(--amber-soft); color: #9e6d19; cursor: not-allowed; }
+    .time-slot:disabled { opacity: 1; }
+    .grid-footnote { margin: 13px 0 0; color: var(--muted); font-size: 10px; }
+    .selection-note { min-height: 39px; display: flex; align-items: center; gap: 8px; margin-top: 16px; padding: 9px 11px; border-radius: 6px; background: #f6f8f6; color: #657168; font-size: 11px; }
+    .selection-note svg { width: 15px; height: 15px; flex: 0 0 auto; color: var(--grass); }
+    .summary { position: sticky; top: 18px; overflow: hidden; border: 1px solid #e8ede8; border-radius: 9px; background: white; box-shadow: var(--shadow); }
+    .summary-head { padding: 20px 20px 16px; border-bottom: 1px solid var(--line); }
+    .summary-label { margin-bottom: 6px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+    .summary-head h2 { margin: 0; font: 700 19px/1.2 "Outfit", sans-serif; }
+    .summary-body { padding: 17px 20px 20px; }
+    .summary-detail { display: flex; align-items: start; gap: 10px; margin-bottom: 13px; color: #647168; font-size: 11px; line-height: 1.5; }
+    .summary-detail svg { width: 16px; height: 16px; flex: 0 0 auto; color: #73847a; }
+    .summary-detail strong { color: var(--ink); font-weight: 600; }
+    .summary-rule { height: 1px; margin: 16px 0; background: var(--line); }
+    .price-line { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; color: #647168; font-size: 11px; }
+    .price-line strong { color: var(--ink); font-size: 12px; }
+    .price-total { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 16px; }
+    .price-total span { font-size: 12px; font-weight: 700; }
+    .price-total strong { color: var(--grass-dark); font: 700 22px/1 "Outfit", sans-serif; }
+    .advance-box { display: flex; justify-content: space-between; gap: 10px; margin-top: 16px; padding: 12px; border-radius: 6px; background: #f1f7f0; color: #426d46; font-size: 11px; }
+    .advance-box strong { color: #235d29; }
+    .primary-button, .secondary-button { width: 100%; min-height: 49px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 0; border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; transition: background .15s, transform .15s; }
+    .primary-button { margin-top: 17px; background: var(--grass); color: white; }
+    .primary-button:hover:not(:disabled) { transform: translateY(-1px); background: var(--grass-dark); }
+    .primary-button:disabled { background: #aeb8b0; cursor: not-allowed; }
+    .primary-button svg, .secondary-button svg { width: 16px; height: 16px; }
+    .secondary-button { margin-top: 10px; border: 1px solid var(--line); background: white; color: var(--night); }
+    .secondary-button:hover { background: #f6f8f6; }
+    .trust-note { display: flex; justify-content: center; gap: 6px; margin: 12px 0 0; color: var(--muted); font-size: 10px; }
+    .trust-note svg { width: 13px; height: 13px; }
+    .screen { display: none; }
+    .screen.is-visible { display: block; animation: appear .24s ease both; }
+    @keyframes appear { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    .screen-title { margin: 0 0 5px; font: 700 20px/1.2 "Outfit", sans-serif; }
+    .screen-intro { margin: 0 0 20px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .booking-detail-card { padding: 17px; border: 1px solid var(--line); border-radius: 7px; background: #fbfcfb; }
+    .booking-detail-card > .summary-detail:last-child { margin-bottom: 0; }
+    .payment-heading { margin: 23px 0 10px; font: 700 14px "Outfit", sans-serif; }
+    .payment-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .payment-option { display: flex; align-items: center; gap: 10px; min-height: 66px; padding: 11px; border: 1px solid var(--line); border-radius: 7px; }
+    .payment-logo { width: 35px; height: 35px; display: grid; place-items: center; border-radius: 7px; background: #f5e8fd; color: #6b298c; font: 800 17px "Outfit", sans-serif; }
+    .payment-option:last-child .payment-logo { background: #e5f4ed; color: #17834b; font-size: 13px; }
+    .payment-option strong { display: block; margin-bottom: 3px; font-size: 12px; }
+    .payment-option span { color: var(--muted); font-size: 10px; }
+    .payment-number { margin: 11px 0 0; padding: 12px 14px; border: 1px dashed #cbd9cb; border-radius: 6px; background: #f8fbf7; color: #4c5d51; font-size: 12px; }
+    .payment-number strong { color: var(--night); font-size: 14px; }
+    .payment-number small { display: block; margin-top: 4px; color: var(--muted); font-size: 10px; }
+    .form-field { margin-top: 17px; }
+    .form-field label { display: block; margin-bottom: 7px; font-size: 12px; font-weight: 700; }
+    .form-field input[type="text"] { width: 100%; min-height: 46px; padding: 0 12px; border: 1px solid #dce5dd; border-radius: 6px; background: white; color: var(--ink); }
+    input:focus-visible, button:focus-visible, a:focus-visible { outline: 3px solid #8cc98d; outline-offset: 3px; }
+    .form-hint { display: block; margin-top: 6px; color: var(--muted); font-size: 10px; }
+    .upload-box { position: relative; min-height: 93px; display: grid; place-items: center; padding: 14px; border: 1px dashed #b9c9bc; border-radius: 6px; background: #fafcfa; text-align: center; cursor: pointer; }
+    .upload-box:hover { border-color: var(--grass); background: #f5faf4; }
+    .upload-box svg { width: 21px; height: 21px; margin-bottom: 5px; color: var(--grass); }
+    .upload-box strong { display: block; font-size: 11px; }
+    .upload-box span { display: block; margin-top: 3px; color: var(--muted); font-size: 10px; }
+    .upload-box input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+    .or-divider { display: flex; align-items: center; gap: 10px; margin: 13px 0 0; color: #8a958d; font-size: 10px; }
+    .or-divider::before, .or-divider::after { height: 1px; flex: 1; content: ""; background: var(--line); }
+    .error-message { min-height: 17px; margin: 9px 0 0; color: #b83c36; font-size: 11px; }
+    .receipt-summary { display: grid; gap: 0; margin-top: 17px; padding: 14px; border-radius: 6px; background: #f3f7f2; }
+    .receipt-summary .price-line { margin-bottom: 8px; }
+    .receipt-summary .price-line:last-child { margin-bottom: 0; padding-top: 9px; border-top: 1px solid #dce7dc; }
+    .confirmation-panel { max-width: 620px; margin: 0 auto; padding: 28px; border: 1px solid var(--line); border-radius: 9px; background: white; text-align: center; box-shadow: var(--shadow); }
+    .success-mark { width: 51px; height: 51px; display: grid; place-items: center; margin: 0 auto 13px; border-radius: 50%; background: var(--mint); color: var(--grass); }
+    .success-mark svg { width: 25px; height: 25px; }
+    .confirmation-panel h2 { margin-bottom: 7px; font: 700 23px "Outfit", sans-serif; }
+    .confirmation-panel > p { margin-bottom: 20px; color: var(--muted); font-size: 12px; }
+    .pass { display: grid; grid-template-columns: minmax(0, 1fr) 150px; overflow: hidden; border: 1px solid #e1e9e1; border-radius: 8px; text-align: left; }
+    .pass-info { padding: 18px; }
+    .pass-brand { display: flex; align-items: center; gap: 7px; margin-bottom: 17px; color: var(--grass-dark); font-size: 10px; font-weight: 700; letter-spacing: .3px; }
+    .pass-brand svg { width: 19px; height: 19px; }
+    .pass-code-label { margin-bottom: 4px; color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+    .pass-code { margin-bottom: 17px; color: var(--night); font: 700 27px/1 "Outfit", sans-serif; letter-spacing: 1px; }
+    .pass-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 8px; }
+    .pass-field span { display: block; margin-bottom: 3px; color: var(--muted); font-size: 9px; }
+    .pass-field strong { display: block; font-size: 11px; }
+    .qr-area { display: grid; align-content: center; justify-items: center; gap: 6px; padding: 13px; border-left: 1px dashed #dfe8df; background: #fbfdfb; }
+    #qr-code { width: 112px; height: 112px; display: grid; place-items: center; padding: 5px; background: white; }
+    #qr-code img, #qr-code canvas { width: 102px !important; height: 102px !important; image-rendering: pixelated; }
+    .qr-area span { color: var(--muted); font-size: 9px; }
+    .review-note { display: inline-flex; align-items: center; gap: 7px; margin: 17px 0 0; padding: 9px 11px; border-radius: 5px; background: var(--amber-soft); color: #87601f; font-size: 10px; text-align: left; }
+    .review-note svg { width: 14px; height: 14px; flex: 0 0 auto; }
+    .confirmation-panel .primary-button { max-width: 280px; margin: 18px auto 0; }
+    .footer { display: flex; justify-content: space-between; gap: 20px; padding: 18px 0 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; }
+    .footer strong { color: #4e5e53; }
+    @media (max-width: 1000px) {
+      .shell { padding: 0 28px; }
+      .booking-layout { grid-template-columns: minmax(0, 1fr) 285px; gap: 17px; }
+      .hero { padding-inline: 34px; }
+      .panel { padding: 18px; }
+      .summary-head, .summary-body { padding-inline: 16px; }
+      .step { font-size: 0; gap: 0; }
+      .step-number { font-size: 11px; }
+    }
+    @media (max-width: 760px) {
+      .shell { padding: 0 18px; }
+      .topbar { height: 70px; }
+      .nav { display: none; }
+      .top-contact { min-height: 40px; padding: 0 12px; font-size: 11px; }
+      .hero { min-height: 225px; padding: 27px 23px; border-radius: 9px; }
+      .hero::after { background: linear-gradient(90deg, rgba(10, 32, 22, .88), rgba(12, 38, 25, .5) 74%, rgba(12, 38, 25, .25)); }
+      .hero-tag { right: 18px; bottom: 15px; font-size: 10px; }
+      .hero-copy > p:last-child { max-width: 280px; font-size: 12px; line-height: 1.5; }
+      .booking-layout { grid-template-columns: 1fr; gap: 14px; padding-top: 21px; }
+      .section-heading { align-items: center; }
+      .section-heading h2 { font-size: 18px; }
+      .section-heading p { max-width: 230px; line-height: 1.4; }
+      .stepper { gap: 5px; }
+      .step-divider { width: 10px; }
+      .panel { padding: 16px; }
+      .date-row { margin-right: -3px; }
+      .court-row { gap: 7px; }
+      .court-card { min-height: 70px; gap: 7px; padding: 8px; }
+      .court-icon { width: 32px; height: 32px; flex-basis: 32px; }
+      .court-icon svg { width: 21px; height: 21px; }
+      .court-info strong { font-size: 11px; }
+      .court-info span { font-size: 9px; }
+      .time-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; }
+      .time-slot { min-height: 45px; font-size: 11px; }
+      .summary { position: static; }
+      .summary-body { padding-bottom: 16px; }
+      .footer { font-size: 9px; }
+    }
+    @media (max-width: 420px) {
+      .shell { padding: 0 13px; }
+      .brand-copy strong { font-size: 14px; }
+      .brand-mark { width: 39px; height: 39px; }
+      .top-contact { max-width: 111px; text-align: center; line-height: 1.2; }
+      .hero { min-height: 215px; padding-inline: 18px; }
+      .eyebrow { font-size: 9px; }
+      h1 { max-width: 300px; font-size: 32px; }
+      .court-row { grid-template-columns: 1fr; }
+      .court-card { min-height: 58px; }
+      .court-icon { width: 34px; height: 34px; flex-basis: 34px; }
+      .stepper { gap: 3px; }
+      .step-divider { width: 7px; }
+      .section-heading { align-items: flex-start; }
+      .payment-options { grid-template-columns: 1fr; }
+      .confirmation-panel { padding: 19px 13px; }
+      .pass { grid-template-columns: minmax(0, 1fr) 112px; }
+      .pass-info { padding: 13px 10px; }
+      .qr-area { padding: 8px 4px; }
+      #qr-code { width: 94px; height: 94px; }
+      #qr-code img, #qr-code canvas { width: 84px !important; height: 84px !important; }
+      .pass-fields { gap: 10px 5px; }
+      .pass-field strong { font-size: 10px; }
+      .footer { flex-direction: column; gap: 6px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#reservar">Ir a disponibilidad</a>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="Grass El Gol de Oro, inicio">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.7"/><path d="m16 10 4 3v5l-4 3-4-3v-5l4-3Zm0 0V4m4 9 6-2m-6 7 4 5m-8-5-4 5m0-7-6-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="brand-copy"><strong>GRASS EL GOL DE ORO</strong><span>F&uacute;tbol que se vive</span></span>
+      </a>
+      <nav class="nav" aria-label="Navegaci&oacute;n principal">
+        <a href="#reservar">Reservar cancha</a>
+        <a href="#como-llegar">C&oacute;mo llegar</a>
+      </nav>
+      <a class="top-contact" href="tel:+51987654321" aria-label="Llamar al complejo">+51 987 654 321</a>
+    </header>
+
+    <main id="inicio">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="live-dot"></span> Cajamarca, Per&uacute; &middot; Reserva en l&iacute;nea</p>
+          <h1 id="page-title">La cancha te espera.</h1>
+          <p>Elige tu horario, invita a tu equipo y que ruede la pelota.</p>
+        </div>
+        <div class="hero-tag"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="9" r="2.3" stroke="currentColor" stroke-width="1.7"/></svg> Cajamarca, Cajamarca</div>
+      </section>
+
+      <div class="booking-layout" id="reservar">
+        <div class="main-column">
+          <div class="section-heading">
+            <div><h2>Reserva tu partido</h2><p>Selecciona un d&iacute;a, una cancha y tu hora de juego.</p></div>
+            <div class="stepper" aria-label="Paso 1 de 3">
+              <span class="step is-current" data-step-indicator="1"><span class="step-number">1</span> Elige</span><span class="step-divider"></span>
+              <span class="step" data-step-indicator="2"><span class="step-number">2</span> Paga</span><span class="step-divider"></span>
+              <span class="step" data-step-indicator="3"><span class="step-number">3</span> Listo</span>
+            </div>
+          </div>
+
+          <section class="panel screen is-visible" id="screen-select" aria-labelledby="availability-title">
+            <div class="section-heading"><div><h2 id="availability-title">Disponibilidad</h2><p>Los horarios se muestran en hora local.</p></div></div>
+            <div class="date-row" id="date-picker" role="group" aria-label="Seleccionar fecha"></div>
+            <div class="court-row" id="court-picker" role="group" aria-label="Seleccionar cancha">
+              <button class="court-card" type="button" data-court="1" aria-pressed="false"><span class="court-icon" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none"><rect x="3" y="4" width="22" height="20" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M14 4v20m0-14a4 4 0 0 1 0 8M3 9h4v10H3m22-10h-4v10h4" stroke="currentColor" stroke-width="1.3"/></svg></span><span class="court-info"><strong>Cancha 1</strong><span>F&uacute;tbol 7 &middot; S/ 60/h</span></span></button>
+              <button class="court-card" type="button" data-court="2" aria-pressed="true"><span class="court-icon" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none"><rect x="3" y="4" width="22" height="20" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M14 4v20m0-14a4 4 0 0 1 0 8M3 9h4v10H3m22-10h-4v10h4" stroke="currentColor" stroke-width="1.3"/></svg></span><span class="court-info"><strong>Cancha 2</strong><span>F&uacute;tbol 7 &middot; S/ 60/h</span></span></button>
+              <button class="court-card" type="button" data-court="3" aria-pressed="false"><span class="court-icon" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none"><rect x="3" y="4" width="22" height="20" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M14 4v20m0-14a4 4 0 0 1 0 8M3 9h4v10H3m22-10h-4v10h4" stroke="currentColor" stroke-width="1.3"/></svg></span><span class="court-info"><strong>Cancha 3</strong><span>F&uacute;tbol 7 &middot; S/ 60/h</span></span></button>
+            </div>
+            <div class="availability-line"><h3 id="slots-heading">Horarios disponibles</h3><span>Partidos de 1 hora</span></div>
+            <div class="legend" aria-label="Estados de horario"><span class="legend-item"><span class="legend-dot"></span>Disponible</span><span class="legend-item"><span class="legend-dot busy"></span>Ocupado</span><span class="legend-item"><span class="legend-dot pending"></span>En proceso</span></div>
+            <div class="time-grid" id="time-grid" role="group" aria-labelledby="slots-heading"></div>
+            <p class="grid-footnote">La reserva se confirma al completar el registro del adelanto.</p>
+            <div class="selection-note" role="status" aria-live="polite"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 11v5m0-8h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span id="selection-message">Elige un horario disponible para continuar.</span></div>
+          </section>
+
+          <section class="panel screen" id="screen-payment" aria-labelledby="payment-title">
+            <h2 class="screen-title" id="payment-title">Confirma tu reserva</h2>
+            <p class="screen-intro">Revisa los datos del partido y registra el adelanto para guardar tu horario.</p>
+            <div class="booking-detail-card">
+              <div class="summary-detail"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M16 3v4M8 3v4M3 10h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span><strong id="payment-date">Fecha</strong></span></div>
+              <div class="summary-detail"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M12 4v16m0-11a3 3 0 0 1 0 6M3 8h3v8H3m18-8h-3v8h3" stroke="currentColor" stroke-width="1.4"/></svg><span><strong id="payment-court">Cancha</strong> &middot; <span id="payment-time">Hora</span></span></div>
+              <div class="summary-detail"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M15 8.5c-.6-.6-1.6-1-3-1-1.6 0-2.7.8-2.7 2s1.2 1.8 2.8 2.1 2.8.8 2.8 2.1-1.2 2.2-3 2.2c-1.4 0-2.6-.5-3.3-1.2M12 5.5v13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>Alquiler: <strong>S/ 60.00</strong></span></div>
+            </div>
+            <h3 class="payment-heading">Paga el adelanto del 50%</h3>
+            <div class="payment-options">
+              <div class="payment-option"><span class="payment-logo" aria-hidden="true">Y</span><span><strong>Yape</strong><span>Transfiere y adjunta</span></span></div>
+              <div class="payment-option"><span class="payment-logo" aria-hidden="true">Plin</span><span><strong>Plin</strong><span>Transfiere y adjunta</span></span></div>
+            </div>
+            <div class="payment-number"><strong>987 654 321</strong><small>Grass El Gol de Oro &middot; Adelanto: S/ 30.00</small></div>
+            <div class="form-field">
+              <label for="receipt-file">Comprobante de pago</label>
+              <label class="upload-box" for="receipt-file"><span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16V4m0 0L7 9m5-5 5 5M5 15v4a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><strong id="file-label">Sube una imagen o PDF</strong><span>JPG, PNG o PDF &middot; m&aacute;x. 5 MB</span></span><input id="receipt-file" type="file" accept="image/jpeg,image/png,application/pdf"></label>
+            </div>
+            <div class="or-divider">o registra tu n&uacute;mero de operaci&oacute;n</div>
+            <div class="form-field"><label for="operation-number">N&uacute;mero de operaci&oacute;n</label><input id="operation-number" type="text" inputmode="numeric" autocomplete="off" placeholder="Ej. 123456789"><span class="form-hint">Completa el comprobante o el n&uacute;mero de operaci&oacute;n.</span></div>
+            <p class="error-message" id="payment-error" aria-live="polite"></p>
+            <div class="receipt-summary"><div class="price-line"><span>Adelanto para reservar</span><strong>S/ 30.00</strong></div><div class="price-line"><span>Saldo en recepci&oacute;n</span><strong>S/ 30.00</strong></div><div class="price-line"><span>Total por 1 hora</span><strong>S/ 60.00</strong></div></div>
+            <button class="primary-button" id="confirm-booking" type="button">Confirmar reserva <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="secondary-button" id="back-to-availability" type="button">Volver a disponibilidad</button>
+          </section>
+
+          <section class="screen" id="screen-confirmation" aria-labelledby="confirmation-title">
+            <div class="confirmation-panel">
+              <span class="success-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4.5 4.5L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <h2 id="confirmation-title">Tu cancha ya es tuya.</h2>
+              <p>Reserva registrada. Guarda este pase y mu&eacute;stralo al llegar.</p>
+              <div class="pass">
+                <div class="pass-info">
+                  <div class="pass-brand"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.7"/><path d="m16 10 4 3v5l-4 3-4-3v-5l4-3Zm0 0V4m4 9 6-2m-6 7 4 5m-8-5-4 5m0-7-6-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> GRASS EL GOL DE ORO</div>
+                  <div class="pass-code-label">C&oacute;digo de acceso</div><div class="pass-code" id="booking-code">GO-1021</div>
+                  <div class="pass-fields"><div class="pass-field"><span>Fecha</span><strong id="pass-date">--</strong></div><div class="pass-field"><span>Horario</span><strong id="pass-time">--</strong></div><div class="pass-field"><span>Cancha</span><strong id="pass-court">--</strong></div><div class="pass-field"><span>Adelanto</span><strong>S/ 30.00 pagado</strong></div></div>
+                </div>
+                <div class="qr-area"><div id="qr-code" aria-label="C&oacute;digo QR de acceso"></div><span>Escanea al ingresar</span></div>
+              </div>
+              <div class="review-note"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 11v5m0-8h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>El adelanto queda sujeto a validaci&oacute;n del comprobante por el complejo.</div>
+              <button class="primary-button" id="new-booking" type="button">Volver a disponibilidad</button>
+            </div>
+          </section>
+        </div>
+
+        <aside class="summary" aria-labelledby="summary-title" id="booking-summary">
+          <div class="summary-head"><div class="summary-label">Tu partido</div><h2 id="summary-title">Resumen de reserva</h2></div>
+          <div class="summary-body">
+            <div class="summary-detail"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M16 3v4M8 3v4M3 10h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span id="summary-date">Selecciona una fecha</span></div>
+            <div class="summary-detail"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M12 4v16m0-11a3 3 0 0 1 0 6M3 8h3v8H3m18-8h-3v8h3" stroke="currentColor" stroke-width="1.4"/></svg><span id="summary-court">Cancha 2</span></div>
+            <div class="summary-detail"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span id="summary-time">Selecciona un horario</span></div>
+            <div class="summary-rule"></div>
+            <div class="price-line"><span>Alquiler (1 hora)</span><strong>S/ 60.00</strong></div>
+            <div class="advance-box"><span>Adelanto (50%)</span><strong>S/ 30.00</strong></div>
+            <div class="price-total"><span>Total</span><strong>S/ 60</strong></div>
+            <button class="primary-button" id="continue-booking" type="button" disabled>Continuar <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <p class="trust-note"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" stroke="currentColor" stroke-width="1.7"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Pago protegido &middot; Confirmaci&oacute;n inmediata</p>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <footer class="footer" id="como-llegar"><span><strong>Grass El Gol de Oro</strong> &middot; Cajamarca, Per&uacute;</span><span>Atenci&oacute;n todos los d&iacute;as &middot; 08:00 a 23:00</span></footer>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
+  <script>
+    (() => {
+      const state = { date: null, court: 2, time: null, bookingCode: null };
+      const datePicker = document.getElementById('date-picker');
+      const timeGrid = document.getElementById('time-grid');
+      const continueButton = document.getElementById('continue-booking');
+      const times = Array.from({ length: 15 }, (_, index) => `${String(index + 8).padStart(2, '0')}:00`);
+      const weekdays = ['Domingo', 'Lunes', 'Martes', 'Mi\u00e9rcoles', 'Jueves', 'Viernes', 'S\u00e1bado'];
+      const shortWeekdays = ['Dom', 'Lun', 'Mar', 'Mi\u00e9', 'Jue', 'Vie', 'S\u00e1b'];
+      const monthNames = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+      const pad = (value) => String(value).padStart(2, '0');
+      const dateKey = (date) => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+      const dateLabel = (date) => `${weekdays[date.getDay()]}, ${date.getDate()} de ${monthNames[date.getMonth()]}`;
+      const dates = Array.from({ length: 7 }, (_, index) => {
+        const date = new Date();
+        date.setHours(0, 0, 0, 0);
+        date.setDate(date.getDate() + index);
+        return date;
+      });
+      state.date = dates[0];
+
+      function renderDates() {
+        datePicker.innerHTML = dates.map((date, index) => `<button class="date-button" type="button" data-date-index="${index}" aria-pressed="${index === 0}"><span class="day-name">${index === 0 ? 'Hoy' : index === 1 ? 'Ma&ntilde;ana' : shortWeekdays[date.getDay()]}</span><span class="day-number">${date.getDate()}</span></button>`).join('');
+        datePicker.addEventListener('click', (event) => {
+          const button = event.target.closest('[data-date-index]');
+          if (!button) return;
+          state.date = dates[Number(button.dataset.dateIndex)];
+          state.time = null;
+          datePicker.querySelectorAll('.date-button').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+          renderTimeGrid();
+          updateSummary();
+        });
+      }
+
+      function slotStatus(time, index) {
+        const day = dates.findIndex((date) => dateKey(date) === dateKey(state.date));
+        const seed = day * 7 + state.court * 3 + index * 5;
+        if (dateKey(state.date) === dateKey(new Date()) && Number(time.slice(0, 2)) <= new Date().getHours()) return 'busy';
+        if (seed % 11 === 1 || seed % 13 === 4) return 'pending';
+        if (seed % 4 === 0 || seed % 9 === 2) return 'busy';
+        return 'available';
+      }
+
+      function renderTimeGrid() {
+        timeGrid.innerHTML = times.map((time, index) => {
+          const status = slotStatus(time, index);
+          const selected = state.time === time && status === 'available';
+          const label = status === 'busy' ? `${time}, ocupado` : status === 'pending' ? `${time}, en proceso` : `${time}, disponible`;
+          return `<button type="button" class="time-slot${status === 'busy' ? ' is-busy' : status === 'pending' ? ' is-pending' : ''}" data-time="${time}" aria-label="${label}" aria-pressed="${selected}"${status !== 'available' ? ' disabled' : ''}>${time}</button>`;
+        }).join('');
+        timeGrid.onclick = (event) => {
+          const button = event.target.closest('[data-time]');
+          if (!button || button.disabled) return;
+          state.time = button.dataset.time;
+          timeGrid.querySelectorAll('.time-slot').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+          document.getElementById('selection-message').textContent = `Elegiste ${state.time} a ${pad(Number(state.time.slice(0, 2)) + 1)}:00. Contin\u00faa para completar tu reserva.`;
+          updateSummary();
+        };
+        document.getElementById('selection-message').textContent = 'Elige un horario disponible para continuar.';
+      }
+
+      function updateSummary() {
+        document.getElementById('summary-date').textContent = dateLabel(state.date);
+        document.getElementById('summary-court').textContent = `Cancha ${state.court}`;
+        document.getElementById('summary-time').textContent = state.time ? `${state.time} - ${pad(Number(state.time.slice(0, 2)) + 1)}:00 hrs` : 'Selecciona un horario';
+        continueButton.disabled = !state.time;
+      }
+
+      function showStep(step) {
+        document.querySelectorAll('.screen').forEach((screen) => screen.classList.remove('is-visible'));
+        document.getElementById(step === 1 ? 'screen-select' : step === 2 ? 'screen-payment' : 'screen-confirmation').classList.add('is-visible');
+        document.querySelectorAll('[data-step-indicator]').forEach((indicator) => {
+          const number = Number(indicator.dataset.stepIndicator);
+          indicator.classList.toggle('is-current', number === step);
+          indicator.classList.toggle('is-done', number < step);
+        });
+        document.querySelector('.stepper').setAttribute('aria-label', `Paso ${step} de 3`);
+        if (step === 1) document.getElementById('availability-title').focus({ preventScroll: true });
+        window.scrollTo({ top: document.getElementById('reservar').offsetTop - 12, behavior: 'smooth' });
+      }
+
+      document.getElementById('court-picker').addEventListener('click', (event) => {
+        const button = event.target.closest('[data-court]');
+        if (!button) return;
+        state.court = Number(button.dataset.court);
+        state.time = null;
+        document.querySelectorAll('.court-card').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+        renderTimeGrid();
+        updateSummary();
+      });
+
+      continueButton.addEventListener('click', () => {
+        if (!state.time) return;
+        document.getElementById('payment-date').textContent = dateLabel(state.date);
+        document.getElementById('payment-court').textContent = `Cancha ${state.court}`;
+        document.getElementById('payment-time').textContent = `${state.time} a ${pad(Number(state.time.slice(0, 2)) + 1)}:00 hrs`;
+        document.getElementById('payment-error').textContent = '';
+        showStep(2);
+      });
+
+      document.getElementById('back-to-availability').addEventListener('click', () => showStep(1));
+      document.getElementById('receipt-file').addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        const label = document.getElementById('file-label');
+        if (!file) { label.textContent = 'Sube una imagen o PDF'; return; }
+        if (file.size > 5 * 1024 * 1024) {
+          event.target.value = '';
+          label.textContent = 'Sube una imagen o PDF';
+          document.getElementById('payment-error').textContent = 'El archivo supera el l\u00edmite de 5 MB.';
+          return;
+        }
+        label.textContent = file.name;
+        document.getElementById('payment-error').textContent = '';
+      });
+
+      document.getElementById('confirm-booking').addEventListener('click', () => {
+        const file = document.getElementById('receipt-file').files[0];
+        const operation = document.getElementById('operation-number').value.trim();
+        const error = document.getElementById('payment-error');
+        if (!file && !operation) {
+          error.textContent = 'Adjunta tu comprobante o escribe el n\u00famero de operaci\u00f3n.';
+          document.getElementById('operation-number').focus();
+          return;
+        }
+        if (file && file.size > 5 * 1024 * 1024) {
+          error.textContent = 'El archivo supera el l\u00edmite de 5 MB.';
+          return;
+        }
+        let nextCode = Number(localStorage.getItem('gol-de-oro-next-code') || 1021);
+        state.bookingCode = `GO-${nextCode}`;
+        localStorage.setItem('gol-de-oro-next-code', String(nextCode + 1));
+        const endTime = `${pad(Number(state.time.slice(0, 2)) + 1)}:00`;
+        document.getElementById('booking-code').textContent = state.bookingCode;
+        document.getElementById('pass-date').textContent = `${pad(state.date.getDate())}/${pad(state.date.getMonth() + 1)}/${state.date.getFullYear()}`;
+        document.getElementById('pass-time').textContent = `${state.time} - ${endTime}`;
+        document.getElementById('pass-court').textContent = `Cancha ${state.court}`;
+        document.getElementById('qr-code').innerHTML = '';
+        if (window.QRCode) new QRCode(document.getElementById('qr-code'), { text: `${state.bookingCode}|${dateKey(state.date)}|${state.court}|${state.time}`, width: 102, height: 102, colorDark: '#173b2a', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
+        else document.getElementById('qr-code').textContent = state.bookingCode;
+        showStep(3);
+        document.getElementById('confirmation-title').focus({ preventScroll: true });
+      });
+
+      document.getElementById('new-booking').addEventListener('click', () => {
+        state.time = null;
+        document.getElementById('receipt-file').value = '';
+        document.getElementById('file-label').textContent = 'Sube una imagen o PDF';
+        document.getElementById('operation-number').value = '';
+        renderTimeGrid();
+        updateSummary();
+        showStep(1);
+      });
+
+      renderDates();
+      renderTimeGrid();
+      updateSummary();
+    })();
+  </script>
+</body>
+</html>
